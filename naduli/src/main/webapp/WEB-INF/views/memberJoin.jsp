@@ -36,7 +36,7 @@
 	#label_box2 input{
 		width: 280px;
 		height: 30px;
-		margin-bottom : 5px; 
+		margin-bottom: 5px; 
 	}
 </style>
 </head>
