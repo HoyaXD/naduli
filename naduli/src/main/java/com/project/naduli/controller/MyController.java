@@ -16,17 +16,16 @@ public class MyController {
 	    MemberService memberService;
 	    @GetMapping("/")
 	    public String mainPage() {
-	        return "test";
+	        return "main";
 	    }
 
 	    @GetMapping("/login")
 	    public void login(){
 	    }
-
-	    @GetMapping("/test2")
-	    public String test(){
-	        return "redirect:/mainPage";
+	    
+	    @GetMapping("/memberJoin")
+	    public void goMemberJoin() {
+	    	
 	    }
-
 
 }

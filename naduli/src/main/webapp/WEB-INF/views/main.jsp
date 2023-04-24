@@ -4,15 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>NADULI</title>
 </head>
 <body>
-<h1>테스트 인덱스페이지</h1>
-push test 확인용 
-tttt
-7:38
-EDDD
-테스트 7시 50분
-테스트 주나
+<a href="#">로그인</a>
+<a href="memberJoin">회원가입</a>
+
 </body>
 </html>
