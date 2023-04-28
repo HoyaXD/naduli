@@ -38,17 +38,20 @@
 		height: 30px;
 		margin-bottom: 5px; 
 	}
+	input[id="detailAddress"]{
+		width: 380px;
+	}
 </style>
 </head>
 <body>
 <h1>Naduli 회원가입</h1>
 <div class="main_container">
 	<div id="membership_box">
-		<form>
+		<form method="post" action="/registerMember">
 			<div id="label_box">
 				<h4><label>아이디</label></h4>
-				<input type="text" name="id" placeholder="ID를 입력하세요.">@
-				<select id="mail">
+				<input type="text" name="getId" placeholder="ID를 입력하세요.">@
+				<select id="mail" name="email">
 					<option value="naver.com">naver.com</option>
 					<option value="daum.net">daum.net</option>
 					<option value="nate.com">nate.com</option>
@@ -58,11 +61,11 @@
 			</div>
 			<div id="label_box">
 				<h4><label>패스워드</label></h4>
-				<input type="text" name="pw" placeholder="패스워드를 입력하세요.">
+				<input type="password" name="pw" placeholder="패스워드를 입력하세요.">
 			</div>
 			<div id="label_box">
 				<h4><label>패스워드 확인</label></h4>
-				<input type="text" name="pw" placeholder="패스워드를 입력하세요.">
+				<input type="password" name="pwCheck" placeholder="패스워드를 입력하세요.">
 			</div>
 			<div id="label_box">
 				<h4><label>이름</label></h4>
@@ -74,18 +77,18 @@
 			</div>
 			<div id="label_box2">
 				<h4><label>주소</label></h4>
-				<input type="text" id="postcode" placeholder="우편번호" readonly>
+				<input type="text" name="postCode" id="postcode" placeholder="우편번호" readonly>
 				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" readonly><br>
-				<input type="text" id="address" placeholder="주소" readonly><br>
-				<input type="text" id="detailAddress" placeholder="상세주소">
-				<input type="text" id="extraAddress" placeholder="참고항목">
-
+				<input type="text" name="getAddress" id="address" placeholder="주소" readonly><br>
+				<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+				<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">
 			</div>
 			<input type="submit" value="회원가입">
 		</form>
 	</div>
 </div>
 <script>
+	//카카오 주소검색 
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -133,6 +136,8 @@
             }
         }).open();
     }
+	
+	//
 </script>
 </body>
 </html>

@@ -1,10 +1,23 @@
 package com.project.naduli.serviece;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.naduli.mapper.IMemberService;
+import com.project.naduli.IService.IMemberService;
+import com.project.naduli.mapper.MemberMapper;
+import com.project.naduli.vo.MemberVO;
 
 @Service
 public class MemberService implements IMemberService{
+	
+	@Autowired
+	MemberMapper MemberMapper;
+	
+	@Override
+	public int regiMember(MemberVO membervo) {
+		int result = MemberMapper.regiMember(membervo);
+		
+		return result;
+	}
 
 }

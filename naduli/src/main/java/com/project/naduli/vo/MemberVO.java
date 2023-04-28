@@ -14,5 +14,6 @@ public class MemberVO {
 	private String name;
 	private String tel;
 	private String address;
+	private String postCode;
 
 }
