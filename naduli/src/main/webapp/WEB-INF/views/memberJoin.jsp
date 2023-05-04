@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Naduli join the Membership</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
 	*{
 		
@@ -47,7 +48,7 @@
 <h1>Naduli 회원가입</h1>
 <div class="main_container">
 	<div id="membership_box">
-		<form method="post" action="/registerMember">
+		<form method="post" name="frm" action="/registerMember">
 			<div id="label_box">
 				<h4><label>아이디</label></h4>
 				<input type="text" name="getId" placeholder="ID를 입력하세요.">@
@@ -61,11 +62,12 @@
 			</div>
 			<div id="label_box">
 				<h4><label>패스워드</label></h4>
-				<input type="password" name="pw" placeholder="패스워드를 입력하세요.">
+				<input type="password" id="pw" name="pw" placeholder="패스워드를 입력하세요.">
 			</div>
 			<div id="label_box">
 				<h4><label>패스워드 확인</label></h4>
-				<input type="password" name="pwCheck" placeholder="패스워드를 입력하세요.">
+				<input type="password" id="pwCheck" name="pwCheck" placeholder="패스워드를 재입력하세요.">
+				<span id="pwCheckComment"></span>
 			</div>
 			<div id="label_box">
 				<h4><label>이름</label></h4>
@@ -83,11 +85,31 @@
 				<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
 				<input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">
 			</div>
-			<input type="submit" value="회원가입">
+			<input type="submit" value="회원가입" onclick="return validationCheck();">
 		</form>
 	</div>
 </div>
 <script>
+	
+	//pw중복체크
+	$('#pwCheck').focusout(function() {  
+        let passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+        let pw = document.frm.pw.value;
+        if(document.frm.pwCheck.value != ""){
+            if (pw.length < 8) {
+                document.getElementById("pwCheckComment").innerHTML ="<span style='color:red'>비밀번호는 8글자 이상이어야 합니다.</span>";
+            }else if (pw.length > 20) {
+                document.getElementById("pwCheckComment").innerHTML ="<span style='color:red'>비밀번호는 20글자를 초과할 수 없습니다.</span>";
+            }else if (!passRule.test(pw)) {
+                document.getElementById("pwCheckComment").innerHTML ="<span style='color:red'>비밀번호는 특수문자,영문,숫자 모두 포함해야 합니다.</span>";
+            }else if(document.frm.pw.value == document.frm.pwCheck.value){
+                document.getElementById("pwCheckComment").innerHTML = "<span style='color:green'>비밀번호 일치합니다.</span>";
+            }else {
+                document.getElementById("pwCheckComment").innerHTML = "<span style='color:red'>비밀번호가 일치하지 않습니다.</span>";
+            }
+        }
+    });
+
 	//카카오 주소검색 
     function execDaumPostcode() {
         new daum.Postcode({
@@ -137,7 +159,40 @@
         }).open();
     }
 	
-	//
+	//유효성검사
+	function validationCheck(){
+		if(document.frm.id.value ==''){
+			alert("아이디를 입력해주세요.");
+			document.frm.id.focus();
+			return false;
+		}else if(document.frm.pw.value ==''){
+			alert("비밀번호를 입력해주세요.");
+			document.frm.pw.focus();
+			return false;
+		}else if(document.frm.pwCheck.value ==''){
+			alert("비밀번호 확인을 입력해주세요.");
+			document.frm.pwCheck.focus();
+			return false;
+		}else if(document.frm.name.value ==''){
+			alert("이름을 입력해주세요.");
+			document.frm.id.focus();
+			return false;
+		}else if(document.frm.tel.value ==''){
+			alert("전화번호를 입력해주세요.");
+			document.frm.tel.focus();
+			return false;
+		}else if(document.frm.address.value ==''){
+			alert("주소를 입력해주세요.");
+			document.frm.address.focus();
+			return false;
+		}else if(document.getElementById("pwCheckComment").innerText != "비밀번호 일치합니다."){
+			alert("비밀번호가 일치하지 않습니다.");
+			document.frm.pw.focus();
+			return false;
+		}else {
+			return true;
+		}
+	}
 </script>
 </body>
 </html>
