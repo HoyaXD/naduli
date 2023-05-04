@@ -7,7 +7,7 @@
 <title>NADULI</title>
 </head>
 <body>
-<a href="#">로그인</a>
+<a href="login">로그인</a>
 <a href="memberJoin">회원가입</a>
 
 </body>

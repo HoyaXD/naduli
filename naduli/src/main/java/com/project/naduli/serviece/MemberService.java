@@ -1,5 +1,6 @@
 package com.project.naduli.serviece;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,12 @@ public class MemberService implements IMemberService{
 	@Override
 	public int regiMember(MemberVO membervo) {
 		int result = MemberMapper.regiMember(membervo);
-		
+		return result;
+	}
+	
+	@Override
+	public int loginMember(@Param("id")String id, @Param("pw")String pw) {
+		int result = MemberMapper.loginMember(id, pw);
 		return result;
 	}
 

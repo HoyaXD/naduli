@@ -20,7 +20,8 @@ public class MyController {
 	    }
 
 	    @GetMapping("/login")
-	    public void login(){
+	    public String login(){
+	    	return "login";
 	    }
 	    
 	    @GetMapping("/memberJoin")

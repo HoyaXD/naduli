@@ -8,4 +8,8 @@
 		INSERT INTO member_tbl (id, pw, name, tel, postCode, address) 
 		VALUES (#{id}, #{pw}, #{name}, #{tel}, #{postCode}, #{address})
 	</insert>
+	
+	<select id = "loginMember" resultType="int">
+		SELECT COUNT(*) FROM member_tbl WHERE id = #{id} AND pw = #{pw};
+	</select>
 </mapper>
